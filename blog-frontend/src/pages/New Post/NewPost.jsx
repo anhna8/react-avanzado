@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import './NewPost.css'
+import React from 'react';
 import { postSchema } from '../../schemas/Post'
   
 
@@ -22,7 +23,16 @@ const NewPost = () => {
       // Simular envío de datos
       await new Promise(resolve => setTimeout(resolve, 1000))
       console.log('Datos del post:', data)
-      alert('¡Post creado exitosamente!')
+      toast.success(
+        <div>
+            <h3>Post creado exitosamente!</h3>
+            <p>Titulo: {data.title}</p>
+            <p>Autor: {data.author}</p>
+            <p>Categoria: {data.category}</p>
+            <p>Fecha: {new Date(data.publishDate).toLocaleString()}</p>
+        </div>,
+        { closeButton: true, autoClose: 5000, position: 'top-right' }
+      )
       reset()
     } catch (error) {
       console.error('Error al crear el post:', error)
@@ -144,6 +154,7 @@ const NewPost = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }
