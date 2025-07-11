@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import './NewPost.css'
-import React from 'react';
+import { ToastContainer, toast } from 'react-toastify'
 import { postSchema } from '../../schemas/Post'
   
 
@@ -20,7 +20,6 @@ const NewPost = () => {
 
   const onSubmit = async (data) => {
     try {
-      // Simular envío de datos
       await new Promise(resolve => setTimeout(resolve, 1000))
       console.log('Datos del post:', data)
       toast.success(
@@ -36,7 +35,13 @@ const NewPost = () => {
       reset()
     } catch (error) {
       console.error('Error al crear el post:', error)
-      alert('Error al crear el post. Intenta nuevamente.')
+      toast.error(
+        <div>
+            <h3>Error al crear el post</h3>
+            <p>Ha ocurrido un error:</p>
+            <p>{error.message}</p>
+        </div>,
+      )
     }
   }
 
