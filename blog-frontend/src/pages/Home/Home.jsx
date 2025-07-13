@@ -32,13 +32,11 @@ const Home = () => {
     fetchPosts()
   }, [])
 
-  // Calcular los datos de paginación
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE)
   const indexOfLastPost = currentPage * POSTS_PER_PAGE
   const indexOfFirstPost = indexOfLastPost - POSTS_PER_PAGE
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
-  // Cambiar de página
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
   const nextPage = () => setCurrentPage(prev => Math.min(prev + 1, totalPages))
   const prevPage = () => setCurrentPage(prev => Math.max(prev - 1, 1))
@@ -82,7 +80,6 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Paginación */}
       {totalPages > 1 && (
         <div className='pagination'>
           <button
