@@ -23,7 +23,7 @@ const NewPost = () => {
       await new Promise(resolve => setTimeout(resolve, 1000))
       console.log('Datos del post:', data)
       toast.success(
-        <div>
+        <div>  
             <h3>Post creado exitosamente!</h3>
             <p>Titulo: {data.title}</p>
             <p>Autor: {data.author}</p>
