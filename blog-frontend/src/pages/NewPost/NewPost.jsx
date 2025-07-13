@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import './NewPost.css'
 import { ToastContainer, toast } from 'react-toastify'
 import { postSchema } from '../../schemas/Post'
   
