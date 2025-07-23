@@ -5,9 +5,9 @@ import { toast, ToastContainer } from 'react-toastify'
 import { useAuthContext } from '../../hooks/useAuth'
 import './Login.css'
 
-
 const Login = () => {
 const { login } = useAuthContext()
+const navigate = useNavigate()
 
   const {
     register,
@@ -44,8 +44,10 @@ const { login } = useAuthContext()
         draggable: true
       })
 
-      // Aquí iría la lógica de autenticación
-      // Ejemplo: await authService.login(data.email, data.password)
+      setTimeout(() => {
+        navigate('/newpost') // Redirigir a la página de nuevo post
+      }, 1000) // Esperar 1 segundo antes de redirigir
+
     } catch (error) {
       console.error('Error en el login:', error)
       toast.error(error.message || 'Error al iniciar sesión', {
