@@ -1,24 +1,29 @@
+import{ AuthProvider} from './context/AuthContext'
+import { BrowserRouter } from 'react-router-dom'
+import BlogRoutes from './routes/BlogRoutes'
+import Header from './components/Header/Header'
 import './App.css'
-import NewPost from './pages/New Post/NewPost'
 
-function App() {
-
+function App () {
   return (
-    <>
-    <div className="app">
-      <main className='app-main'>
-        <div className='container'>
-          <NewPost />
+    <AuthProvider>
+      <BrowserRouter>
+        <Header />
+        <div className='app'>
+          <main className='app-main'>
+            <div className='container'>
+              <BlogRoutes />
+            </div>
+          </main>
         </div>
-      </main>
-    </div>
+      </BrowserRouter>
 
-    <footer className='app-footer'>
-      <div className='container'>
-      <p>© 2025 Blog de Cesar Guerra. Todos los derechos reservados.</p>
-      </div>
-    </footer>
-    </>
+      <footer className='app-footer'>
+        <div className='container'>
+          <p>© 2025 Blog de César Guerra. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+    </AuthProvider>
   )
 }
 

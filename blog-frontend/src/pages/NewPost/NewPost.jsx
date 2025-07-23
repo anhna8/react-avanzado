@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import './NewPost.css'
 import { ToastContainer, toast } from 'react-toastify'
 import { postSchema } from '../../schemas/Post'
   
@@ -23,7 +22,7 @@ const NewPost = () => {
       await new Promise(resolve => setTimeout(resolve, 1000))
       console.log('Datos del post:', data)
       toast.success(
-        <div>
+        <div>  
             <h3>Post creado exitosamente!</h3>
             <p>Titulo: {data.title}</p>
             <p>Autor: {data.author}</p>
