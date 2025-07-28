@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './home.css'
 
 const getRandomImageUrl = (postId) => {
-  const imageId = 100 + (postId % 1000)
+  const imageId = 100 + (postId % 1000) // Obtengo un ID de imagen entre 100 y 1099
   return `https://picsum.photos/id/${imageId}/600/400`
 }
 
@@ -14,10 +14,11 @@ const Home = () => {
   const [error, setError] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
 
+  // Traemos los post de la API de jsonplaceholder
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts')
+        const response = await fetch('http://localhost:3000/api/v1/posts')
         if (!response.ok) {
           throw new Error('Error al cargar los posts')
         }
@@ -32,11 +33,13 @@ const Home = () => {
     fetchPosts()
   }, [])
 
+  // Calcular los datos de paginación
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE)
   const indexOfLastPost = currentPage * POSTS_PER_PAGE
   const indexOfFirstPost = indexOfLastPost - POSTS_PER_PAGE
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
+  // Cambiar de página
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
   const nextPage = () => setCurrentPage(prev => Math.min(prev + 1, totalPages))
   const prevPage = () => setCurrentPage(prev => Math.max(prev - 1, 1))
@@ -80,6 +83,7 @@ const Home = () => {
         ))}
       </div>
 
+      {/* Paginación */}
       {totalPages > 1 && (
         <div className='pagination'>
           <button
